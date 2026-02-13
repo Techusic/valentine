@@ -152,7 +152,7 @@ async function sendNotification(type, message) {
                 type: type,
                 title: title,
                 body: body,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toLocaleString('en-US')
             })
         });
         return { ok: true };
