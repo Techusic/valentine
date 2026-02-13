@@ -399,9 +399,15 @@ body.locked section:not(#home) { display: none; }
 .nav-btn.prev { left: 20px; }
 .nav-btn.next { right: 20px; }
 
-/* Hide arrows on mobile (swipe) */
+/* Optimize arrows for mobile */
 @media (max-width: 768px) {
-    .nav-btn { display: none; }
+    .nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 32px;
+    }
+    .nav-btn.prev { left: 10px; }
+    .nav-btn.next { right: 10px; }
 }
 
 /* Remove default controls from small preview videos */
