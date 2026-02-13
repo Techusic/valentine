@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="An interactive Valentine page with a solvable puzzle and memories gallery.">
+    <meta name="theme-color" content="#ff4d6d">
+    <title>For My Forever Valentine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="bg-hearts"></div>
+
+    <section id="home">
+        <div class="glass-card main-hero">
+            <div id="puzzle-container" class="puzzle-wrapper">
+                <div id="puzzle" class="puzzle"></div>
+                <div class="puzzle-controls">
+                    <button id="giveupBtn" class="btn-small">I'm stuck, help! ❤️</button>
+                </div>
+                <p id="puzzleMsg">Solve the puzzle to enter...</p>
+            </div>
+
+            <div id="welcome-msg" class="hidden">
+                <div class="hero-heart">❤️</div>
+                <h1>Hey Beautiful,</h1>
+                <p>I'm so glad you're here.</p>
+                <div class="scroll-hint">Scroll down ↓</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="main-content" class="hidden">
+        <section id="reasons">
+            <div class="glass-card">
+                <h2>Why I Love You</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card"><h3>🌟</h3><p>Your smile lights up my whole world.</p></div>
+                    <div class="reason-card"><h3>🧸</h3><p>The way you give the absolute best hugs.</p></div>
+                    <div class="reason-card"><h3>🧠</h3><p>Your brilliant mind and kind heart.</p></div>
+                    <div class="reason-card"><h3>🌈</h3><p>You make every day an adventure.</p></div>
+                    <div class="reason-card"><h3>🔥</h3><p>You're the hottest and sexiest woman alive.</p></div>
+                    <div class="reason-card"><h3>🤝</h3><p>You're always there for me.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="glass-card">
+                <h2>Our Memories</h2>
+                <div class="gallery-grid" id="galleryGrid">
+                    <div class="media-slot" data-index="0">
+                        <img src="1.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="1">
+                        <img src="2.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="2">
+                        <img src="3.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="3">
+                        <img src="4.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="4">
+                        <img src="5.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="5">
+                        <img src="6.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="6">
+                        <img src="7.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="7">
+                        <video src="1.mp4" class="media-preview"></video>
+                    </div>
+                    <div class="media-slot" data-index="8">
+                        <video src="2.mp4" class="media-preview"></video>
+                    </div>
+                    <div class="media-slot" data-index="9">
+                        <video src="3.mp4" class="media-preview"></video>
+                    </div>
+                    <div class="media-slot" data-index="10">
+                        <img src="8.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="11">
+                        <img src="9.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="12">
+                        <img src="10.jpeg" alt="" class="media-preview">
+                    </div>
+                    <div class="media-slot" data-index="13">
+                        <img src="11.jpeg" alt="" class="media-preview">
+                    </div>
+                </div>
+
+                <div style="margin-top:12px;display:flex;align-items:center;gap:10px;">
+                    <button class="btn" id="hugBtn">Send Virtual Hug 🤗</button>
+                    <span id="hugStatus" class="send-status" aria-live="polite"></span>
+                </div>
+
+                <!-- webhook settings removed per user request -->
+            </div>
+        </section>
+
+        <section id="proposal">
+            <div class="glass-card">
+                <h2 id="questionText">Will you be my Valentine?</h2>
+                <div class="btn-container" id="targetContainer">
+                    <button class="btn" id="yesBtn">YES!</button>
+                    <span id="yesStatus" class="send-status" aria-live="polite"></span>
+                    <button class="btn" id="noBtn">No</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="mediaModal" class="modal hidden">
+        <span class="close-modal">&times;</span>
+        <button class="nav-btn prev" id="prevMedia">&lsaquo;</button>
+        <button class="nav-btn next" id="nextMedia">&rsaquo;</button>
+        <div class="modal-content">
+            <img id="modalImg" src="" class="hidden">
+            <video id="modalVid" src="" controls class="hidden"></video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
