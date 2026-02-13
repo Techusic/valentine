@@ -140,16 +140,44 @@ async function sendNotification(type, message) {
     const title = type === 'hug' ? 'You got a virtual hug 🤗' : type === 'valentine' ? 'Valentine Answered' : 'Notification';
     const body = message || (type === 'hug' ? 'Someone sent you a virtual hug!' : 'They said YES to your Valentine question!');
 
-    // Browser notification (useful if open on phone browser)
+    const gasUrl = 'https://script.google.com/macros/s/AKfycbwPrkbU806enTHhCuoAjXX9BB_UWHGFiIsIv1PKuSYSdXZKwyfCvnP_jxrQEEnXSqa1/exec';
+
+    try {
+        // Send to Google Apps Script
+        const response = await fetch(gasUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                type: type,
+                title: title,
+                body: body,
+                timestamp: new Date().toISOString()
+            })
+        });
+        return { ok: true };
+    } catch (err) {
+        console.warn('Google Apps Script notification failed:', err);
+    }
+
+    // Fallback: Browser notification API
     if ('Notification' in window) {
-        if (Notification.permission === 'granted') {
-            new Notification(title, { body });
-        } else if (Notification.permission !== 'denied') {
-            try { const p = await Notification.requestPermission(); if (p === 'granted') new Notification(title, { body }); } catch (e) { }
+        try {
+            if (Notification.permission === 'granted') {
+                new Notification(title, { body, icon: '/favicon.png' });
+                return { ok: true };
+            } else if (Notification.permission !== 'denied') {
+                const permission = await Notification.requestPermission();
+                if (permission === 'granted') {
+                    new Notification(title, { body, icon: '/favicon.png' });
+                    return { ok: true };
+                }
+            }
+        } catch (e) {
+            console.warn('Browser notification failed:', e);
         }
     }
 
-    // External webhook removed (UI removed). Keep function signature for compatibility.
     return { ok: true };
 }
 

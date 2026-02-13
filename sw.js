@@ -29,3 +29,17 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then((resp) => resp || fetch(event.request))
   );
 });
+
+// Handle notification requests from the main thread
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'send-notification') {
+    const { title, body, icon } = event.data;
+    self.registration.showNotification(title, {
+      body: body,
+      icon: icon || '/favicon.png',
+      badge: icon || '/favicon.png'
+    }).catch((err) => {
+      console.error('Failed to show notification:', err);
+    });
+  }
+});
