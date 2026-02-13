@@ -1,6 +1,6 @@
 const SIZE = 3;
 const TILE_COUNT = SIZE * SIZE;
-const IMG_URL = 'us.png'; 
+const IMG_URL = '/valentine/us.png'; 
 
 let current = Array.from({ length: TILE_COUNT }, (_, i) => i);
 const initial = [...current];
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', initPuzzle);
 // Register service worker in production (if supported)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then((reg) => {
+        navigator.serviceWorker.register('/valentine/sw.js').then((reg) => {
             console.log('SW registered', reg.scope);
         }).catch((err) => {
             console.warn('SW registration failed', err);
@@ -164,12 +164,12 @@ async function sendNotification(type, message) {
     if ('Notification' in window) {
         try {
             if (Notification.permission === 'granted') {
-                new Notification(title, { body, icon: '/favicon.png' });
+                new Notification(title, { body, icon: '/valentine/favicon.png' });
                 return { ok: true };
             } else if (Notification.permission !== 'denied') {
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
-                    new Notification(title, { body, icon: '/favicon.png' });
+                    new Notification(title, { body, icon: '/valentine/favicon.png' });
                     return { ok: true };
                 }
             }
